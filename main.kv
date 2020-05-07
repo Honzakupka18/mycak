@@ -1,0 +1,112 @@
+Manager:
+    Start:
+    Second:
+
+
+
+
+
+#:import utils kivy.utils
+<Start>
+    name: 'Start'
+    user: user_box
+    GridLayout:
+        canvas:
+            Color:
+                rgb: utils.get_color_from_hex("#5D2B90")
+            Rectangle:
+                size:self.size
+                pos: self.pos
+        cols:1
+        GridLayout:
+            padding: 10
+            cols: 2
+            size_hint: .1,.1
+            pos_hint: {"top":1, "right":1}
+            Label:
+                text: "Kdo mel mycku:"
+                font_size: "14sp"
+            TextInput:
+                width: 35
+                id: user_box
+                on_leave:
+        BoxLayout:
+            padding: 10
+            orientation: "vertical"
+            rows:1
+            size_hint: 1,.1
+            pos_hint: {"top":.9, "left":1}
+            Button:
+                text: "zapsat myho mastnyho mycaka"
+                on_press: root.zapsat()
+        BoxLayout:
+            padding: 10
+            orientation: "vertical"
+            spacing: 150
+            rows:1
+            size_hint: 1,.1
+            pos_hint: {"top":1, "left":1}
+            Button:
+                text: "kdo mel naposledy mycaka"
+                on_press: root.ukaz()
+        BoxLayout:
+            padding: 10
+            orientation: "vertical"
+            spacing: 150
+            rows:1
+            size_hint: 1,.1
+            pos_hint: {"top":1, "left":1}
+            Button:
+                text: "ukaz vsechny mycky"
+                on_press: app.root.current = 'Second'
+        GridLayout:
+
+            cols:1
+            size_hint: 1,.1
+            pos_hint: {"top":1, "right":.5}
+            Label:
+                id: labelfetchname
+            Label:
+                id: labelfetchdate
+            Label:
+                id: labelfetchname1
+            Label:
+                id: labelfetchdate1
+<Second>
+    name: 'Second'
+    id:second
+    listReminders: listReminders
+    canvas:
+        Color:
+            rgb: utils.get_color_from_hex("#5D2B90")
+        Rectangle:
+            size:self.size
+            pos: self.pos
+    ScrollView:
+        do_scroll_x: False
+        do_scroll_y: True
+
+        pos_hint: {"top":1, "right":1}
+        Label:
+
+            text_size: self.width, None
+            size_hint_y: None
+            height: self.texture_size[1]
+            halign: 'left'
+            valign: 'top'
+
+            id:listReminders
+
+
+    Button:
+        size_hint: 1,.1
+        pos_hint: {"top":0.2, "left":1}
+        text: "ukaz vsechny mycaky"
+        on_press: root.ukaz_vse()
+    Button:
+        size_hint: 1,.1
+        pos_hint: {"top":0.1, "left":1}
+        text: "zpet"
+        on_press: app.root.current = 'Start'
+
+
